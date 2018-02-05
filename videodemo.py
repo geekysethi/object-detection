@@ -4,7 +4,7 @@ import glob
 from matplotlib import pyplot as plt
 from imutils.video import FPS
 import time
-
+  
 print("[INFO] loading model...")
 net = cv2.dnn.readNetFromCaffe('MobileNetSSD_deploy.prototxt.txt', 'MobileNetSSD_deploy.caffemodel')
 print("[INFO] model loaded...")
@@ -14,7 +14,7 @@ CLASSES = ["background", "aeroplane", "bicycle", "bird", "boat",
 	"bottle", "bus", "car", "cat", "chair", "cow", "diningtable",
 	"dog", "horse", "motorbike", "person", "pottedplant", "sheep",
 	"sofa", "train", "tvmonitor"]
-	
+
 COLORS = np.random.uniform(0, 255, size=(len(CLASSES), 3))
 
 
@@ -23,7 +23,7 @@ def object_detection(image):
 	blob = cv2.dnn.blobFromImage(cv2.resize(image, (300, 300)), 0.007843, (300, 300), 127.5)
 	# pass the blob through the network and obtain the detections and
 	# predictions
-	
+
 	print("[INFO] computing object detections...")
 	net.setInput(blob)
 	detections = net.forward()
@@ -59,7 +59,7 @@ while(cap.isOpened()):
 
 	image=object_detection(frame)
 	cv2.imshow('image',image)
-	
+
 	if cv2.waitKey(1) & 0xFF == ord('q'):
 		break
 	fps.update()
